@@ -1,0 +1,58 @@
+# Random Quote — README 
+
+Overview
+- A minimal React + TypeScript single-file app (`src/App.tsx`) that displays random quotes.
+- The app uses inline styles only and no extra components or CSS files.
+- For reliability the app currently uses a local list of quotes (includes a Yoda quote). It was originally written to fetch from public quote APIs but falls back to local quotes when network/API issues occur.
+
+Resources Used
+- React (with hooks): `useState`, `useEffect` — core UI and state management.
+- TypeScript + TSX: typed React component in `src/App.tsx`.
+- Vite: development server and build tooling (project scaffolded with Vite).
+- Local quotes array: simple, dependable source of quotes bundled inside `src/App.tsx`.
+
+Why local quotes?
+- During development the external APIs (e.g., `https://api.quotable.io/random`, `https://type.fit/api/quotes`, `https://zenquotes.io/api/random`) were unreliable from the current environment (TLS and 404 errors). To make the app stable and work offline, the app now uses a bundled local array of quotes.
+
+How the app works (brief)
+- On load: `useEffect` runs once and selects a random quote from the local array.
+- State: `useState` holds the currently displayed quote.
+- Interaction: The `New Quote` button calls a function that picks another random quote from the same local array.
+- Styling: All styles are inline in `src/App.tsx`. The layout uses a centered card with responsive sizing (via CSS `clamp()` and flexible `vw`/`max-width`) to work across mobile, desktop, and large screens.
+
+Files of interest
+- `src/App.tsx` — single-file app. Contains the entire UI, inline styles, and local quotes.
+- `index.html`, `src/main.tsx` — Vite/React entry points (created by the scaffold). You usually don't need to edit these for this small app.
+
+Run locally
+1. Install dependencies (only once):
+
+```cmd
+npm install
+```
+
+2. Start dev server:
+
+```cmd
+npm run dev
+```
+
+3. Open the URL Vite prints (usually `http://localhost:5173`) and test in different viewport sizes.
+
+Troubleshooting & notes
+- If your editor (VS Code) shows TypeScript diagnostics claiming "Type annotations can only be used in TypeScript files" for `src/App.tsx`, try:
+  - Reload the VS Code window (Command Palette → Reload Window).
+  - Ensure the workspace TypeScript version is the project one (bottom-right TS version selector).
+  - Confirm the file extension is `.tsx` and the project has a valid `tsconfig.json` (present in this repo).
+- If you want remote quotes again later, we can re-add a small fetch-with-fallback implementation that tries public APIs and falls back to the bundled list.
+
+Next suggestions (optional)
+- Add more local quotes or load a JSON file with quotes if the list grows large.
+- Add a small accessibility improvement: keyboard support and ARIA labels for the button.
+- Add a simple animation when quotes change (fade or slide) for nicer UX.
+
+If you'd like, I can:
+- Commit these changes and open the dev server now and share screenshots at multiple sizes.
+- Add a small JSON file for quotes and load it locally instead of embedding the array in `App.tsx`.
+
+Tell me which you'd prefer.
